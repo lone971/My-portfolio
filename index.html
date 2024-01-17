@@ -20,8 +20,8 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#conctact">Contact</a></li>
-                    <i class="fas fa-times" id="close-icon"></i>
                 </ul>
+                <i class="fas fa-times" id="close-icon" style="display: none;"></i>
             </nav>
             <div class="header-text">
                 <p>PERSONAL PROFILE PAGE</p>
@@ -81,31 +81,28 @@
             <div class="container">
                 <h1 class="sub-title">Services</h1>
                 <div class="services-list">
-                    <div>
-                        <i class="fa-solid fa-code"></i>
+                    <div class="service-item">
+                        <i class="fas fa-code"></i>
                         <h2>Web Design</h2>
-                        <p>My approach to web design is rooted in the belief that every website should be unique <br> and tailored to the needs of its users. From the initial concept to the final product, I strive to create designs that are visually appealing, easy to navigate, and optimized for a seamless user experience.</p>
-                        <i class="fa-solid fa-right-to-bracket fa-fade" style="color: #3cddd2;"></i>
-                        <a href=" https://www.codecademy.com/"><i>Sign In </i></a>
+                        <p>My approach to web design is rooted in the belief that every website should be unique and tailored to the needs of its users. From the initial concept to the final product, I strive to create designs that are visually appealing, easy to navigate, and optimized for a seamless user experience.</p>
+                        <a href="https://www.codecademy.com/" class="btn">Sign In</a>
                     </div>
-                    <div>
-                        <i class="fa-solid fa-crop"></i>
+                    <div class="service-item">
+                        <i class="fas fa-crop"></i>
                         <h2>Software</h2>
                         <p>One of my greatest strengths as a software developer is my ability to work collaboratively with teams to achieve common goals. Whether it's contributing to open-source projects, collaborating on a new feature, or leading a development team, I'm committed to fostering a culture of creativity, collaboration, and excellence.</p>
-                        
-                        <i class="fa-solid fa-right-to-bracket fa-fade" style="color: #3cddd2;"></i>
-                        <a href=" https://www.edx.org/"><i>Sign In </i></a>
+                        <a href="https://www.edx.org/" class="btn">Sign In</a>
                     </div>
-                    <div>
-                        <i class="fa-brands fa-app-store"></i>
+                    <div class="service-item">
+                        <i class="fab fa-app-store"></i>
                         <h2>Machine Learning</h2>
-                        <p>My goal as a Machine Learning practitioner is to build models <br> that solve real-world problems and deliver value to my clients and end-users. I believe that Machine <br> Learning has the power to revolutionize the way we live, work, and interact with the world around us. <br> I'm always eager to learn new skills and explore emerging technologies.</p>
-                        <i class="fa-solid fa-right-to-bracket fa-fade" style="color: #3cddd2;"></i>
-                        <a href=" https://www.coursera.org/"><i>Sign In</i></a>
+                        <p>My goal as a Machine Learning practitioner is to build models that solve real-world problems and deliver value to my clients and end-users. I believe that Machine Learning has the power to revolutionize the way we live, work, and interact with the world around us. I'm always eager to learn new skills and explore emerging technologies.</p>
+                        <a href="https://www.coursera.org/" class="btn">Sign In</a>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-------------------portfolio---------->
         <div id="portfolio">
             <div class="container">
@@ -143,7 +140,7 @@
 
         </div>
 <!-- ----------contact--------- -->
-<div id="conctact">
+<div id="contact">
     <div class="container">
         <div class="row">
             <div class="contact-left">
@@ -207,16 +204,56 @@
         </script>
 
         <script>
-            var sidemenu = document.getElementById("sidemenu");
-            function openmenu(){
-                sidemenu.style.right = "0";
+  document.addEventListener('DOMContentLoaded', function () {
+    var menuIcon = document.getElementById('menu-icon');
+    var closeIcon = document.getElementById('close-icon');
+    var sideMenu = document.getElementById('sidemenu');
+
+    menuIcon.addEventListener('click', function () {
+        sideMenu.style.right = "0";
+        closeIcon.style.display = 'block';
+        menuIcon.style.display = 'none';
+    });
+
+    closeIcon.addEventListener('click', function () {
+        sideMenu.style.right = "-200px";
+        closeIcon.style.display = 'none';
+        menuIcon.style.display = 'block';
+    });
+
+    // Handle navigation when a link inside the side menu is clicked
+    var menuItems = sideMenu.getElementsByTagName('a');
+    for (var i = 0; i < menuItems.length; i++) {
+        menuItems[i].addEventListener('click', function () {
+            // Close the side menu
+            sideMenu.style.right = "-600px";
+            closeIcon.style.display = 'none';
+            menuIcon.style.display = 'block';
+
+            // Scroll to the target section
+            var targetId = this.getAttribute('href').substring(1);
+            var targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 50,  // Adjust the offset if needed
+                    behavior: 'smooth'
+                });
             }
-            function closemenu(){
-                sidemenu.style.right = "-200px";
-            }
+        });
+    }
+});
+
+
+
+
+
+ 
+
+
+
 
         </script>
-        <script></script>
 
     </body>
 </html>
